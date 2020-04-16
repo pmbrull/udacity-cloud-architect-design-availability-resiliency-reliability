@@ -61,6 +61,7 @@ The database:
 - Must have only the “UDARR-Database” security group
 - Must have an initial database called “udacity”
 - Must have automatic backups enabled for a period of 7 days
+
 3. **In the active region**, create a "read replica".  **Choose the standby region as the location** (under "Network & Security")  
 
 	The read replica
@@ -71,6 +72,8 @@ The database:
 ***SAVE screenshots of the configuration of the primary and read replica database after they are created.***
 
 ***SAVE screenshots of the configuration of the database subnet groups as well as the route tables associated with the database subnets.***
+
+
 
 
 ### Estimate availability of this configuration
