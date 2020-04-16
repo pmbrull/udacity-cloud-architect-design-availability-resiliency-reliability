@@ -25,28 +25,45 @@ PrivateSubnets|subnet-0d8e4f91e14485ada, subnet-090d46618318cb9cc|A list of the 
 PublicSubnets|subnet-00c56b261abb28884, subnet-0a9712bf66b6f6dff|A list of the public subnets
 VPC|vpc-0899489ef4c6d9f61|VPC ID
 
+Image of Primary VPC
 ![vpc-primary](screenshots/vpc-primary.png "Primary VPC")
+
+Image of Secondary VPC
 ![vpc-secondary](screenshots/vpc-secondary.png "Secondary VPC")
 
 ### Highly durable RDS Database
 
 #### RDS
+
+Primary DB
 ![rds-primary](screenshots/rds-primary.png "Primary RDS")
+
+Replica DB
 ![rds-secondary](screenshots/rds-secondary.png "Secondary RDS")
 
 #### Subnet Groups
+
+Primary RDS Subnet Group
 ![rds-subnet-group-primary](screenshots/rds-subnet-group-primary.png "Primary RDS Subnet Group")
+
+Secondart RDS Subnet Group
 ![rds-subnet-group-secondary](screenshots/rds-subnet-group-secondary.png "Secondary RDS Subnet Group")
 
 #### Private Subnets Route Tables
-![rds-primary-rt](screenshots/rds-primary-rt.png "Primary Private Subnets RT")
-![rds-secondary-rt](screenshots/rds-secondary-rt.png "Secondary Private Subnets RT")
+
+Primary Private Subnets RT
+![vpc-primary-rt](screenshots/rds-primary-rt.png "Primary Private Subnets RT")
+
+Secondary Private Subnets RT
+![vpc-secondary-rt](screenshots/rds-secondary-rt.png "Secondary Private Subnets RT")
 
 ### Estimate availability of this configuration
 
 **TODO**
 
 ### Demonstrate normal usage
+
+Insert data in the master replica:
 
 ```bash
 [ec2-user@ip-10-1-10-92 ~]$ mysql -h mysql-primary.ckktpvote178.eu-west-3.rds.amazonaws.com -D udacity -u admin -p
@@ -82,10 +99,14 @@ MySQL [udacity]> SELECT * FROM orders;
 1 row in set (0.00 sec)
 ```
 
+Master replica configuration
 ![rds-db-config1](screenshots/rds-db-config1.png "RDS config")
+
+Master replica monitoring and replication
 ![primary-db-monitoring](screenshots/primary-db-monitoring.png "Primary DB monitoring")
 ![db-replication](screenshots/db-replication.png "DB Replication")
 
+Trying to insert data in the read replica
 ```
 MySQL [udacity]> INSERT INTO `orders`(`title`,`status`,`priority`,`description`)
     ->     VALUES ('Resiliency, Reliability and Availability',1,1,'Learning about AWS');
@@ -99,7 +120,7 @@ MySQL [udacity]> SELECT * FROM orders;
 1 row in set (0.00 sec)
 ```
 
-After promotion...
+After promotion, insert works as expected
 
 ```
 MySQL [udacity]> INSERT INTO `orders`(`title`,`status`,`priority`,`description`)
@@ -117,4 +138,10 @@ MySQL [udacity]> SELECT * FROM orders;
 
 ```
 
+Configuration after read replica promotion
+
 ![db-replica-promotion](screenshots/db-replica-promotion.png "DB Replica Promotion")
+
+### Website recovery
+
+**TODO**
