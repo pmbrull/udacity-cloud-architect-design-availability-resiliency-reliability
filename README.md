@@ -15,12 +15,12 @@ In order to achieve the highest levels of durability and availability in AWS you
 1. Log into AWS account
 2. Pick your “active” region and set in AWS console
 
-  ![Select region](screenshots/regionSelect.png "Select region")
+  ![Select region](demo-screenshots/regionSelect.png "Select region")
 
 3. Services -> CloudFormation
 4. Create stack “With new resources (standard)”
 
-  ![Create VPC](screenshots/cloudformationCreate.png "Create VPC")
+  ![Create VPC](demo-screenshots/cloudformationCreate.png "Create VPC")
 
     1. Template is ready
     2. Upload a template file
@@ -36,7 +36,7 @@ In order to achieve the highest levels of durability and availability in AWS you
 11. Wait for stack to build out.  Refresh until status becomes “CREATE_COMPLETE”
 12. Observe the “Outputs” tab for the created IDs.  These will be used later.
 
-  ![Outputs](screenshots/cloudformationOutputs.png "Outputs")
+  ![Outputs](demo-screenshots/cloudformationOutputs.png "Outputs")
 
 13. Now pick your “standby” region and switch to it in the AWS console.
 14. Repeat steps 3 through 12 using “Secondary” as the name of the VPC in step 6.  **NOTE:** Be sure to use a different network for the VPC in step 7.
@@ -126,13 +126,13 @@ INSERT INTO `orders`(`title`,`status`,`priority`,`description`)
 
 1. Observe the “DB Connections” to the database and how this metric changes as you connect to the database
 
-  ![Database connections](screenshots/rdsConnections.png "Database connections")
+  ![Database connections](demo-screenshots/rdsConnections.png "Database connections")
 
 2. Observe the “Replication” configuration with your multi-region read replica.  Note in particular the “Lag” (although without a sustained level of writes to the primary, this may not show data).
 
 ***SAVE screenshot of the DB Connections and the database replication configuration.***
 
-  ![Replication](screenshots/replicationConfiguration.png "Replication")
+  ![Replication](demo-screenshots/replicationConfiguration.png "Replication")
 
 #### Simulate recovery in standby region
 
@@ -161,7 +161,7 @@ INSERT INTO `orders`(`title`,`status`,`priority`,`description`)
 
 9. Promote the read replica
 
-  ![Database connections](screenshots/promoteReadReplica.png "Database connections")
+  ![Database connections](demo-screenshots/promoteReadReplica.png "Database connections")
 
 10. Reconnect to the database in the standby region
 11. Try to insert some data into the database:
@@ -185,7 +185,7 @@ You’re tasked with building a resilient static web hosting solution in AWS.  Y
 1. Create a new S3 bucket
     1. Uncheck “Block all public access”
 
-  ![S3 public](screenshots/s3Public.png "S3 public")
+  ![S3 public](demo-screenshots/s3Public.png "S3 public")
 
 2. On the Properties tab, setup the bucket for Static website hosting
     1. Enter “index.html” for both Index document and Error document
@@ -217,7 +217,7 @@ You will now “accidentally” delete contents from the S3 bucket
 
 1. In the AWS S3 console with the Versions setting to “Hide”, delete “winter.jpg”
 
-  ![S3 version](screenshots/s3Version.png "S3 version")
+  ![S3 version](demo-screenshots/s3Version.png "S3 version")
 
 2. Observe that the file is no longer present in the S3 folder and refresh the web page
 
