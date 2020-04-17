@@ -1,0 +1,10 @@
+MySQL [udacity]> INSERT INTO `orders`(`title`,`status`,`priority`,`description`)
+    ->     VALUES ('Resiliency, Reliability and Availability',1,1,'Learning about AWS');
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [udacity]> SELECT * FROM orders;
++----------+------------------------------------------+--------+----------+--------------------+---------------------+
+| order_id | title                                    | status | priority | description        | created_at          |
++----------+------------------------------------------+--------+----------+--------------------+---------------------+
+|        1 | Resiliency, Reliability and Availability |      1 |        1 | Learning about AWS | 2020-04-16 17:39:24 |
++----------+------------------------------------------+--------+----------+--------------------+---------------------+
+1 row in set (0.00 sec)

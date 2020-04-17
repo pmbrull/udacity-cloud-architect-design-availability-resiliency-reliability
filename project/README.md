@@ -26,36 +26,36 @@ PublicSubnets|subnet-00c56b261abb28884, subnet-0a9712bf66b6f6dff|A list of the p
 VPC|vpc-0899489ef4c6d9f61|VPC ID
 
 Image of Primary VPC
-![vpc-primary](screenshots/vpc-primary.png "Primary VPC")
+![vpc-primary](screenshots/primary_Vpc.png "Primary VPC")
 
 Image of Secondary VPC
-![vpc-secondary](screenshots/vpc-secondary.png "Secondary VPC")
+![vpc-secondary](screenshots/secondary_Vpc.png "Secondary VPC")
 
 ### Highly durable RDS Database
 
 #### RDS
 
 Primary DB
-![rds-primary](screenshots/rds-primary.png "Primary RDS")
+![rds-primary](screenshots/primaryDB_config.png "Primary RDS")
 
 Replica DB
-![rds-secondary](screenshots/rds-secondary.png "Secondary RDS")
+![rds-secondary](screenshots/secondaryDB_config.png "Secondary RDS")
 
 #### Subnet Groups
 
 Primary RDS Subnet Group
-![rds-subnet-group-primary](screenshots/rds-subnet-group-primary.png "Primary RDS Subnet Group")
+![rds-subnet-group-primary](screenshots/primaryDB_subnetgroup.png "Primary RDS Subnet Group")
 
 Secondart RDS Subnet Group
-![rds-subnet-group-secondary](screenshots/rds-subnet-group-secondary.png "Secondary RDS Subnet Group")
+![rds-subnet-group-secondary](screenshots/secondaryDB_subnetgroup.png "Secondary RDS Subnet Group")
 
 #### Private Subnets Route Tables
 
 Primary Private Subnets RT
-![vpc-primary-rt](screenshots/rds-primary-rt.png "Primary Private Subnets RT")
+![vpc-primary-rt](screenshots/primary_subnet_routing.png "Primary Private Subnets RT")
 
 Secondary Private Subnets RT
-![vpc-secondary-rt](screenshots/rds-secondary-rt.png "Secondary Private Subnets RT")
+![vpc-secondary-rt](screenshots/secondary_subnet_routing.png "Secondary Private Subnets RT")
 
 ### Estimate availability of this configuration
 
@@ -103,8 +103,8 @@ Master replica configuration
 ![rds-db-config1](screenshots/rds-db-config1.png "RDS config")
 
 Master replica monitoring and replication
-![primary-db-monitoring](screenshots/primary-db-monitoring.png "Primary DB monitoring")
-![db-replication](screenshots/db-replication.png "DB Replication")
+![primary-db-monitoring](screenshots/monitoring_connections.png "Primary DB monitoring")
+![db-replication](screenshots/monitoring_replication.png "DB Replication")
 
 Trying to insert data in the read replica
 ```
@@ -135,7 +135,6 @@ MySQL [udacity]> SELECT * FROM orders;
 |        2 | Resiliency, Reliability and Availability |      1 |        1 | Learning about AWS | 2020-04-16 18:11:57 |
 +----------+------------------------------------------+--------+----------+--------------------+---------------------+
 2 rows in set (0.00 sec)
-
 ```
 
 Configuration after read replica promotion
@@ -145,3 +144,8 @@ Configuration after read replica promotion
 ### Website recovery
 
 **TODO**
+
+### Survey
+
+It's a nice project which reviews the content taught. However, I would either add a diagram at the beginning explaining what we aim to do with the RDS or ask the students to do so, otherwise it may seem confusing. Moreover, when treating the RDS, I'd explicitly show the steps to create the replica in the standby region, as otherwise it's a bit tricky to understand from where these second database comes from.
+Moreover, if the student does not know how CloudFormation works, it could be an inconvenient, as it's easy to get lost there. All in all, great project, but for the nanodegree itself it would try to make it very clear what are the prerequisits the students must have before starting. Moreover, asking for the VPC subnets, subnet groups and subnet routing it is a bit redundant. Maybe just subnet groups and routing should be enough, as the information can be already seen.

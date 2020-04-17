@@ -1,0 +1,12 @@
+MySQL [udacity]> INSERT INTO `orders`(`title`,`status`,`priority`,`description`)
+    ->     VALUES ('Resiliency, Reliability and Availability',1,1,'Learning about AWS');
+Query OK, 1 row affected (0.00 sec)
+
+MySQL [udacity]> SELECT * FROM orders;
++----------+------------------------------------------+--------+----------+--------------------+---------------------+
+| order_id | title                                    | status | priority | description        | created_at          |
++----------+------------------------------------------+--------+----------+--------------------+---------------------+
+|        1 | Resiliency, Reliability and Availability |      1 |        1 | Learning about AWS | 2020-04-16 17:39:24 |
+|        2 | Resiliency, Reliability and Availability |      1 |        1 | Learning about AWS | 2020-04-16 18:11:57 |
++----------+------------------------------------------+--------+----------+--------------------+---------------------+
+2 rows in set (0.00 sec)
