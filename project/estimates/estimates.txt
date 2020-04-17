@@ -1,0 +1,12 @@
+* Minimum RTO for a single AZ outage
+* Minimum RTO for a single region outage
+* Minimum RPO for a single AZ outage
+* Minimum RPO for a single region outage
+
+The Recovery Time Objective (RTO) is the maximum time your platform or service can be unavailable.
+
+If there is a single AZ outage, as our RDS is configured using two subnet groups, where each subnet lies on a different AZ within the same region (for both active and standby regions), then we can continue to operate on the AZ which is still up. If the whole region collapses, then our minimum RTO would be the time that it takes for the replica in the standby region to be promoted. If we do not need to insert data, we could still have 0 RTO time and keep reading from the standby region.
+
+The Recovery Point Objective (RPO) is the maximum amount of time that your system can lose data.
+
+Again, for a single AZ outage, there is no issue, as we are running on top of two subnet groups distributed in two different AZs. However, the RPO here would be the time that it takes for the database replica lying in the standby region to be promoted and operative. Meanwhile, our system won't be able to ingest new data.

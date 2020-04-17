@@ -59,7 +59,13 @@ Secondary Private Subnets RT
 
 ### Estimate availability of this configuration
 
-**TODO**
+The Recovery Time Objective (RTO) is the maximum time your platform or service can be unavailable.
+
+If there is a single AZ outage, as our RDS is configured using two subnet groups, where each subnet lies on a different AZ within the same region (for both active and standby regions), then we can continue to operate on the AZ which is still up. If the whole region collapses, then our minimum RTO would be the time that it takes for the replica in the standby region to be promoted. If we do not need to insert data, we could still have 0 RTO time and keep reading from the standby region.
+
+The Recovery Point Objective (RPO) is the maximum amount of time that your system can lose data.
+
+Again, for a single AZ outage, there is no issue, as we are running on top of two subnet groups distributed in two different AZs. However, the RPO here would be the time that it takes for the database replica lying in the standby region to be promoted and operative. Meanwhile, our system won't be able to ingest new data.
 
 ### Demonstrate normal usage
 
@@ -143,9 +149,15 @@ Configuration after read replica promotion
 
 ### Website recovery
 
-**TODO**
+1. To recover an old version, we could just delete the new version, making the old one the current.
+2. Deleting an object in version enabled buckets created a deletion marker on the object as a new version.
+3. To recover the "deleted" object, we can delete the version with the deletion marker.
 
-### Survey
+Images for the website:
 
-It's a nice project which reviews the content taught. However, I would either add a diagram at the beginning explaining what we aim to do with the RDS or ask the students to do so, otherwise it may seem confusing. Moreover, when treating the RDS, I'd explicitly show the steps to create the replica in the standby region, as otherwise it's a bit tricky to understand from where these second database comes from.
-Moreover, if the student does not know how CloudFormation works, it could be an inconvenient, as it's easy to get lost there. All in all, great project, but for the nanodegree itself it would try to make it very clear what are the prerequisits the students must have before starting. Moreover, asking for the VPC subnets, subnet groups and subnet routing it is a bit redundant. Maybe just subnet groups and routing should be enough, as the information can be already seen.
+1. s3_original.png
+2. s3_season.png
+3. s3_season_revert.png
+4. s3_deletion.png
+5. s3_deletion_marker.png
+6. s3_delete_revert.png
